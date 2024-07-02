@@ -1,12 +1,13 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "MST.h"
+#include "TSP_AED3.h"
+
 
 
 int main(int argc, char *argv[]) {
     clock_t time;
-	time = clock();
+    time = clock();
     char c;
     int count = 0;
 
@@ -29,8 +30,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    V = count; 
-    printf("Amount of vertices: %d\n", V+1);
+    V = count + 1; 
+    printf("Quantidade de vértices: %d\n", V);
 
     fclose(f);
 
@@ -40,11 +41,13 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    // Matrix allocated 
     int** graph = (int**)malloc(V * sizeof(int*));
     for (int i = 0; i < V; i++) {
         graph[i] = (int*)malloc(V * sizeof(int));
     }
 
+    // Read graphs
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
             fscanf(f, "%d ", &graph[i][j]);
@@ -53,14 +56,16 @@ int main(int argc, char *argv[]) {
 
     fclose(f);
 
+    // Execute the main algorithm
     tspApproximation(graph);
 
+    // Free memory alloced
     for (int i = 0; i < V; i++) {
         free(graph[i]);
     }
     free(graph);
 
-    printf("Time:%f\n",(clock() - time) / (double)CLOCKS_PER_SEC);
+    printf("Tempo de execução: %f segundos\n", (clock() - time) / (double)CLOCKS_PER_SEC);
 
     return 0;
 }
