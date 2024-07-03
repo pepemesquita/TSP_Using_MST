@@ -3,8 +3,6 @@
 #include <time.h>
 #include "TSP_AED3.h"
 
-
-
 int main(int argc, char *argv[]) {
     clock_t time;
     time = clock();
@@ -31,7 +29,7 @@ int main(int argc, char *argv[]) {
     }
 
     V = count + 1; 
-    printf("Quantidade de vértices: %d\n", V);
+    printf("Amount vertices: %d\n", V);
 
     fclose(f);
 
@@ -57,7 +55,7 @@ int main(int argc, char *argv[]) {
     fclose(f);
 
     // Execute the main algorithm
-    tspApproximation(graph);
+    Approximation(graph);
 
     // Free memory alloced
     for (int i = 0; i < V; i++) {
@@ -65,7 +63,7 @@ int main(int argc, char *argv[]) {
     }
     free(graph);
 
-    printf("Tempo de execução: %f segundos\n", (clock() - time) / (double)CLOCKS_PER_SEC);
+    printf("ETA: %f Seconds\n", (clock() - time) / (double)CLOCKS_PER_SEC);
 
     return 0;
 }
